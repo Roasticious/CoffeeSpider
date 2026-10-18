@@ -1,19 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F2ED;
+    --ink: #1E1B18;
+    --muted: #5E5A54;
+    --body: #4A4640;
+    --line: #CFC9BE;
+    --line-strong: #BDB6A8;
+    --card: #FFFFFF;
+    --accent: #B4441F;
+    --teal: #12818A;
+    --blue: #2F5F7E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Top nav, reused on every page */
+  .topnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .topnav a {
+    text-decoration: none;
+    color: var(--muted);
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+  }
+  .topnav a:hover { color: var(--ink); }
+  .topnav a[aria-current="page"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-bottom-color: var(--ink);
+  }
+
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 8px 0;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.1;
+  }
+  .lede {
+    margin: 0;
+    max-width: 640px;
+    font-size: 16px;
+    color: var(--body);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .card .tag {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .card:nth-child(1) .tag { color: var(--accent); }
+  .card:nth-child(2) .tag { color: var(--teal); }
+  .card:nth-child(3) .tag { color: var(--blue); }
+  .card h2 {
+    margin: 0;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+  }
+  .card p { margin: 0; font-size: 15px; color: var(--body); }
+  .card .go { margin-top: auto; font-size: 14px; font-weight: 600; }
+
+  .about {
+    max-width: 640px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .about h2 {
+    margin: 0 0 8px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 26px;
+  }
+  .about p { margin: 0; color: var(--body); }
+
+  @media (max-width: 700px) {
+    .page { padding: 32px 20px 48px; gap: 28px; }
+    h1 { font-size: clamp(32px, 8vw, 40px); }
+  }
+  @media (max-width: 400px) {
+    .page { padding: 24px 16px 40px; gap: 24px; }
+    h1 { font-size: 30px; }
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="flavor-map.html">Flavor Map</a>
-    <a href="panama-geisha.html">Panama Geisha</a>
-    <a href="spider-graph.html">Spider Graph</a>
-  </nav>
+  <div class="page">
 
-  <h1>About Me</h1>
-  <p>Welcome to my about page.</p>
+    <nav class="topnav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="flavor-map.html">Flavor Map</a>
+      <a href="panama-geisha.html">Panama Geisha</a>
+      <a href="spider-graph.html">Spider Graph</a>
+    </nav>
+
+    <header>
+      <div class="eyebrow">Coffee reference</div>
+      <h1>Cupping tools</h1>
+      <p class="lede">A small set of interactive boards for tasting, scoring and understanding coffee. Pick one to start.</p>
+    </header>
+
+    <section class="cards" aria-label="Boards">
+      <a class="card" href="spider-graph.html">
+        <span class="tag">Cupping analysis</span>
+        <h2>Spider Graph</h2>
+        <p>Score each attribute and see the shape of a coffee at a glance.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="card" href="flavor-map.html">
+        <span class="tag">Tasting</span>
+        <h2>Flavor Map</h2>
+        <p>Explore flavor descriptors and find the right words for what you taste.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+      <a class="card" href="panama-geisha.html">
+        <span class="tag">Varietal reference</span>
+        <h2>Panama Geisha</h2>
+        <p>A reference page on the varietal and what to expect in the cup.</p>
+        <span class="go">Open &rarr;</span>
+      </a>
+    </section>
+
+    <section class="about">
+      <h2>About</h2>
+      <p>Welcome to my about page. Replace this text with your own.</p>
+    </section>
+
+  </div>
 </body>
 </html>
